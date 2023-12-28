@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qifa.pileportal.dao.PileMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qifa.pileportal.entity.Pile">
+        <id column="id" property="id" />
+        <result column="station_id" property="stationId" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="status" property="status" />
+        <result column="price" property="price" />
+        <result column="power" property="power" />
+        <result column="picture" property="picture" />
+        <result column="information" property="information" />
+        <result column="creat_time" property="creatTime" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+    <select id="selectCommentById" resultType="com.qifa.pileportal.dto.StationCommentDTO">
+        SELECT
+            evaluate.id,
+            `user`.nickname,
+            `user`.avatar,
+            evaluate.score,
+            evaluate.`comment`,
+            evaluate.picture,
+            evaluate.comment_time
+        FROM
+            `user`
+                INNER JOIN
+            evaluate
+            ON
+                `user`.id = evaluate.user_id
+        WHERE
+            evaluate.genre = 2 AND
+            evaluate.pile_id = #{id}
+    </select>
+    <select id="selectReserveById" resultType="com.qifa.pileportal.entity.Reservation">
+        SELECT
+            reservation.*
+        FROM
+            pile
+                INNER JOIN
+            reservation
+            ON
+                pile.id = reservation.pile_id
+        WHERE
+            reservation.status = 1 AND
+            pile.id = #{id}
+    </select>
+
+</mapper>

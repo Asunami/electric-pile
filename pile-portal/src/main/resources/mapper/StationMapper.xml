@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qifa.pileportal.dao.StationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qifa.pileportal.entity.Station">
+        <id column="id" property="id" />
+        <result column="manager_id" property="managerId" />
+        <result column="name" property="name" />
+        <result column="address" property="address" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="phone" property="phone" />
+        <result column="picture" property="picture" />
+        <result column="status" property="status" />
+        <result column="description" property="description" />
+        <result column="distance" property="distance" />
+        <result column="creat_time" property="creatTime" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+    <select id="selectPileById" resultType="com.qifa.pileportal.entity.Pile">
+        SELECT * FROM pile WHERE station_id = #{id}
+    </select>
+    <select id="selectCommentById" resultType="com.qifa.pileportal.dto.StationCommentDTO">
+        SELECT
+            evaluate.id,
+            `user`.nickname,
+            `user`.avatar,
+            evaluate.score,
+            evaluate.`comment`,
+            evaluate.picture,
+            evaluate.comment_time
+        FROM
+            `user`
+                INNER JOIN
+            evaluate
+            ON
+                `user`.id = evaluate.user_id
+        WHERE
+            evaluate.genre = 1 AND
+            evaluate.station_id = #{id}
+    </select>
+
+</mapper>

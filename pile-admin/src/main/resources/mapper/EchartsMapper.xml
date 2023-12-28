@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qifa.pileadmin.dao.EchartsMapper">
+
+    <select id="getOnlineUser" resultType="java.lang.Integer">
+        select count(*) from user where status = #{status}
+    </select>
+
+    <select id="getOnlineStation" resultType="java.lang.Integer">
+        select count(*) from station where status = #{status}
+    </select>
+
+    <select id="getOnlinePile" resultType="java.lang.Integer">
+        select count(*) from pile where status = #{status}
+    </select>
+    <select id="getStationOrderList" resultType="com.qifa.pileadmin.dto.StationOrderDTO">
+        SELECT
+            station.`name`,
+            COUNT(order_item.id) as number,
+            SUM(order_item.money) as money
+        FROM
+            order_item
+                INNER JOIN
+            pile
+            ON
+                order_item.pile_id = pile.id
+                INNER JOIN
+            station
+            ON
+                pile.station_id = station.id
+        GROUP BY
+            station.id
+    </select>
+</mapper>

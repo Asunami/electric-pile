@@ -1,0 +1,32 @@
+server:
+  port: 8086
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/electric-pile?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+
+swagger:
+  enabled: true
+
+alipay:
+  appId: 2021000122689535
+  appPrivateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCeXLibLJfKChkAs2R8coFgJsh+ycTeS6j1cFbVSuj+H2Etp55nbimCqE8Z7RpYsDxMf5Q84x+w9YYc227Uii0vTMtuVm224HwfvRtKQAbBBuy62PlnkvjNqMfbdwaF84Q637aqinTybCulbCGPi9y6eTCywA3oKMZH3dc6TfS2ZK2RwU4L5R7woQ2M5E8/3hkXMctKBnnunyxq6/qoAaBkGoaxdScitxyyp1HAC8F13wZa6BQRGZyuYjLrtRoCjdazuKkDqMg9KTeI8K/aRJYh3rApDwWOyO4DCdAHBrnxeITGZ7VdWNmpGBGNYGH4lyuztWhqQLgfsZAnKato28tPAgMBAAECggEAO17Trwlm1s42VXbsA2QCcQPZQv9uGVEQRQQa6dgtxagKDM28q1Y3pc5n6XZk3D8mPB/QeYtFBFjoMMVrpa8wBX2q/vDULS24G0YQhyO95HwuIFbcGiKVuLTASN00yt9jAZeBqipCcehv7JK/ekubMyXgRgOOsy0mOSdIW4mCZyZ6Aiwio9jD0G6EmIR3Omp12WMhrd+Q/efF4XwLA/Aw+uaRKpMTjhfXDeTgbbqKCWseZY15qFfp1168PMHWMnc/xi2kATYqdjtWtjWVhE07XOycb279G85QhCXlshiws43hOR3aGthEEU9DzuaFB4uFPNW9fLUk/LnDqk0pl3D7kQKBgQDyUBv3eQdfURHfwcybS2mbok0Cbiyo9nrZMIqGoQmsGNqwBZEw44pNq+6zvWPbZOGNgUBEEICG8c5Zba+RbIB8lu4CGeWC7YNmif9rEwtbfnSzc/cF0Pz9Qz5JjVmXQV6EMXvfjMKYzLxGUsAajsQqEkq7oMIRdtOOUPlO3en4lQKBgQCnTqsaGc0aJ1wdMfX3265wXyYkxD+vsiM+Zbmy4Eem037lGb+Dn48cxvTQ6Y5qbrWU2Z18ISxDxrLx0OUur6BtVNpiEzASULu/2b4npbUjRt7wZDR6vggo/L47ZQAlv6QXI6yOmkc0J1ztpwDYTV/DAeNuJGKluSewEOcoQLunUwKBgQC/R0msYxfUwFRRw9RWSoOFXetYncwXXOrBBDZ17C2Mcto+1UY1x4jno29852YqTEpYv80Rbc1nuP3hTlqne3U55JLhibvJTODLUugTiCcRBJPvDP3U05LCAhDrUu+EHRAVXlKgt6bto8CD6tLGpChp5aKk1lQcIScDUxxai4ckuQKBgGV+jsO1tTvRdsrrPQjQhuD6h7w0JWJjUYgP0/hUoILuuIMo/IpPqFTPyUJW/SNJ5/PVk/jyctTm3DVgATgyKMNKf3SRqU7jFRKMeBO7LcipvKLeVwvC7lZXBNwpKE6+FEBJTuvvYZSc8H3nGtcdESPOqHZvsjxQt2fSyTgdFPmrAoGBAJ3frLJrLYcU2p5L2qdgEzJ8UogpZI/N64FKK4RuESq3JImIBzeEbZiLkvchnpl6q410lG5D1APk9nKWIIjKGEeOknR33cM2QArzV941jf9CwyK1hyhUsrXOPo5lsiAbdfehaJgi2EZpHsJ4PTM0vyhU9IMZ40BPedf3jPH/LFp4
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxxTZLmo6WOQChg5jhYj0juHX4XDaNyN8j+fT40PpIllMk41a7yBXdf60L7pVSCsE8aGC+0Obr1Y4fdgu4eexoUZd+haJdE5WTXeaeiS09f+FMNGcZraEMiw0sjg8NeWTREMK4ngeNy6MWxD5IYcrXPuIxlVC1xYCVywAUBYUXhNSIjmg5uiakMjuwhq6tgfZekaVQ0t6f80pBEFepC8R5GSvlFmZYwZ7OPyGNG34dVC6vp9WaBlIJV5WIABdSIaSGC/6P1RtIwfM2P/j4hR2LRnhAQn/Q+OR7iw/ySIKPGDMtcTDZZbQXz+VAgCAXM5ox35xQRd7+LYGaS3qQRA+owIDAQAB
+  notifyUrl: /alipay/notify
+  returnUrl: http://localhost:8082/#/private/recharge
+  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+  sign: RSA2
+  charset: UTF-8
+  format: JSON

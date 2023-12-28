@@ -1,0 +1,33 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/electric-pile?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+
+swagger:
+  enabled: true
+
+aliyun:
+  oss:
+    endpoint: oss-cn-chengdu.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId:  LTAI5t6B4zRNx2ELbCvCqW8N # 访问身份验证中用到用户标识
+    accessKeySecret:  QqbDzInKoZ0FQkzSEbQkg0mtFwO7Xa # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: electric-pile # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    maxSize: 10 # 上传文件大小(M)
+    dir:
+      prefix: pile/images # 上传文件夹路径前缀
